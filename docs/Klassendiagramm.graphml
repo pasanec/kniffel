@@ -33,7 +33,9 @@
 +Block(:void)
 -berechneWert(w:arrayList&lt;Wuerfel&gt;, zahl:int)(:int)
 -ueberpruefeFigur(w:ArrayList&lt;+Wuerfel&gt;, f:int[])(:int)
-+rechneZusammen(:int[])</y:MethodLabel>
++rechneZusammen(:int[])
+-menu(:void)
++placeValues(w:ArrayList&lt;Wuerfel&gt;, a:int)(:void)</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -135,7 +137,6 @@ runde:int</y:AttributeLabel>
     </node>
     <node id="n6">
       <data key="d4" xml:space="preserve"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
           <y:Geometry height="272.33333333333337" width="204.0" x="190.5" y="542.5"/>
@@ -164,7 +165,6 @@ runde:int</y:AttributeLabel>
     </node>
     <node id="n7">
       <data key="d4" xml:space="preserve"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
           <y:Geometry height="182.0" width="458.0" x="485.0" y="632.8333333333334"/>
@@ -185,7 +185,6 @@ runde:int</y:AttributeLabel>
       </data>
     </node>
     <edge id="e0" source="n1" target="n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -196,7 +195,6 @@ runde:int</y:AttributeLabel>
       </data>
     </edge>
     <edge id="e1" source="n2" target="n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -207,7 +205,6 @@ runde:int</y:AttributeLabel>
       </data>
     </edge>
     <edge id="e2" source="n2" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -218,7 +215,6 @@ runde:int</y:AttributeLabel>
       </data>
     </edge>
     <edge id="e3" source="n0" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -229,7 +225,6 @@ runde:int</y:AttributeLabel>
       </data>
     </edge>
     <edge id="e4" source="n4" target="n7">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -240,7 +235,6 @@ runde:int</y:AttributeLabel>
       </data>
     </edge>
     <edge id="e5" source="n5" target="n7">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -251,7 +245,6 @@ runde:int</y:AttributeLabel>
       </data>
     </edge>
     <edge id="e6" source="n4" target="n6">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
