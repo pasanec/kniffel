@@ -12,11 +12,15 @@ public class Wuerfel {
 	}
 	
 	public Wuerfel() {
-		this.setZahl(wuerfeln());
+		this(6);
 	}
 	
-	private int wuerfeln(){
-		return (int)(Math.random() * 6 + 1);
+	public Wuerfel(int seiten) {
+		this.setZahl(wuerfeln(seiten));
+	}
+	
+	private int wuerfeln(int seiten){
+		return (int)(Math.random() * seiten + 1);
 	}
 	
 	@Override
