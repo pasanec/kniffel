@@ -2,7 +2,6 @@ package de.pasanec.kniffel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class Block {
 	private int[] augen;
