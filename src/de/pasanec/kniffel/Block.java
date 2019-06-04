@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class Block {
 	private int[] augen;
 	private int[] figuren;
+	
 	public int[] getAugen() {
 		return augen;
 	}
@@ -56,6 +57,43 @@ public class Block {
 		this.setFiguren(-1, -1);
 	}
 	
+
+// ***Hilfsfunktionen***
+	private int addiere(ArrayList<Wuerfel> aw) {
+		int gw = 0;
+		for(Wuerfel w : aw) {
+			gw += w.getZahl();
+		}
+		return gw;
+	}
+	
+	private int summiereArray(int[] array) {
+		int sum = 0;
+		for(int w: array) {
+			if(w > 0) {
+				sum += w;
+			}
+		}
+		return sum;
+	}
+	
+	private int bonus() {
+		if(this.summiereArray(augen) >= 63) {
+			return 35;
+		}
+		return 0;
+	}
+	
+	private int obererTeil() {
+		return this.summiereArray(augen) + this.bonus();
+	}
+	
+	private int untererTeil() {
+		return this.summiereArray(figuren);
+	}
+	
+// ***Prüfen und berechnen einzutragender Werte	***
+	//augen[]
 	private int berechneWert(ArrayList<Wuerfel> aw, int a) {
 		int gesamtWert = 0;
 		for(Wuerfel w : aw) {
@@ -65,15 +103,7 @@ public class Block {
 		}
 		return gesamtWert;
 	}
-	
-	private int addiere(ArrayList<Wuerfel> aw) {
-		int gw = 0;
-		for(Wuerfel w : aw) {
-			gw += w.getZahl();
-		}
-		return gw;
-	}
-	
+	//figuren[]
 	private int pruefeFigur(ArrayList<Wuerfel> aw, int a) {
 		int sw = 1;
 		int az = 0;
@@ -82,12 +112,12 @@ public class Block {
 		switch(a) {
 		case 7: // Dreierpasch: Mindestens drei gleiche Zahlen (alle Augen zählen)
 			az = 3;
-			gesamtWert += addiere(aw);
+			gesamtWert += this.addiere(aw);
 			break;			
 		
 		case 8: // Viererpasch: Mindestens vier gleiche Zahlen (alle Augen zählen)
 			az = 4;
-			gesamtWert += addiere(aw);
+			gesamtWert += this.addiere(aw);
 			break;
 		
 		case 9: // Full House: Drei gleiche und zwei gleiche andere Zahlen (25 P)
@@ -132,7 +162,6 @@ public class Block {
 			return addiere(aw);
 			
 		}
-		// Switch1 Ende
 		
 		switch(sw) {
 		case 1:
@@ -161,19 +190,85 @@ public class Block {
 			for(int i = 0; i < 5; i++) {
 				if(zarray[i]+1 == zarray[i+1]) {
 					counter++;
+					if(counter >= az) {
+						break;
+					}
 				}else {
 					counter = 0;
 				}
 			}
-			if(counter >= az) {
-				break;
-			}
+			
 			gesamtWert = 0;
 			break;
 		}		
 		
 		return gesamtWert;
 	}
+	
+	// ***eintragen der Werte***
+	
+	public int eintragen(ArrayList<Wuerfel> aw, int a) {
+		int rueckgabe = 0;
+		if(a < 7 && a > 0) {
+			rueckgabe = this.setAugen(this.berechneWert(aw, a), a);
+		}else if(a >= 7 && a <=13) {
+			rueckgabe = this.setFiguren(this.pruefeFigur(aw, a), a);
+		}else {
+			return -1;
+		}
+		return rueckgabe;
+	}
+	
+	//***Berechnung Gesamtpunkte***
+	
+	public int rechneZusammen(){
+		return this.obererTeil() + this.untererTeil();
+	}
+	
+	//***Ausgabe des Spielblocks***
+	
+	public String ausgabe() {
+		String bezZahlen[] = {"Einser", "Zweier", "Dreier", "Vierer", "Fünfer", "Sechser"};
+		String bezFiguren[] = {"Dreierpasch", "Viererpasch", "Full-House", "Kleine Strasse", "Grosse Strasse", "5X gleiche Ausgenzahl", "Chance"};
+		String liste = "=======================================================================\r\n\r\nPunkte\r\n";
+		for(int i = 0; i < bezZahlen.length; i++) {
+			liste += bezZahlen[i] + ": ";
+			if(this.getAugen()[i] > 0) {
+				liste += this.getAugen()[i];
+			} else if(this.getAugen()[i] < 0) {
+				liste += "--";
+			}
+			liste += "\r\n";
+		}
+		liste += "Bonus bei 63: " + this.bonus() + "\r\n";
+		liste += "GESAMT: " + this.obererTeil() + "\r\n";
+		for(int i = 0; i < bezFiguren.length; i++) {
+			liste += bezFiguren[i] + ": ";
+			if(this.getFiguren()[i] > 0) {
+				liste += this.getFiguren()[i];
+			} else if(this.getFiguren()[i] < 0) {
+				liste += "--";
+			}
+			
+			liste += "\r\n";
+		}
+
+		liste += "GESAMT UNTERER TEIL: " + this.untererTeil() + "\r\n";
+		liste += "GESAMT OBERER TEIL: " + this.obererTeil() + "\r\n";
+		liste += "_____________________________\r\n";
+		liste +="ENDSUMME: " + this.rechneZusammen() + "\r\n";
+		liste += "\r\n";
+		liste += "=======================================================================\\r\\n\\r\\n";
+		
+		return liste;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
