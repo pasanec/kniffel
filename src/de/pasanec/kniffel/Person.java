@@ -40,8 +40,5 @@ public class Person {
 	
 	public int punkte() {
 		return this.getBlock().rechneZusammen();
-	}
-	
-	
-	
+	}	
 }
