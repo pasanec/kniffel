@@ -94,22 +94,30 @@ public class GameMenu {
 		return Integer.parseInt(this.getAbfrage());		
 	}
 	
-	public int[] m3(int wanz) {
+	public int[] m3() {
+		
 		this.setAbfrage("-1");
 		this.sc = new Scanner(System.in);
 		while(this.getAbfrage() == "-1") {
+			System.out.println("Welche Wuerfel moechten Sie behalten?\r\nGeben Sie die Nummern durch Kommata getrennt an: ");
+			this.ausgabe = macheStringArray(this.sc.nextLine());
+			if(this.ausgabe.length > 6) {
+				System.out.println("Bitte geben Sie maximal 6 Zahlen an.");
+				this.setAbfrage("-1");
+				continue;				
+			}
 			
 			
 		}
 	}
 	
 	private String[] macheStringArray(String str) {
-		for(int i = 0; i > this.str.length(); i++) {
+		for(int i = 0; i > str.length(); i++) {
 				if(str.charAt(i) == ' ') {
 					str = str.replace(" ", "");
 				}
 		}
-		ausgabe = str.split(",");
+		return str.split(",");
 	}
 
 	
