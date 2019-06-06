@@ -7,7 +7,7 @@ public class Wuerfelbecher {
 	private ArrayList<Wuerfel> wuerfel;
 
 	public ArrayList<Wuerfel> getWuerfel() {
-		return wuerfel;
+		return this.wuerfel;
 	}
 
 	private void setWuerfel(int anzahl) {
@@ -16,8 +16,8 @@ public class Wuerfelbecher {
 		}
 	}
 
-	public Wuerfelbecher(int anzahl) {	
-		this.setWuerfel(anzahl);
+	public Wuerfelbecher() {	
+		this.setWuerfel(5);
 	}
 	
 	@Override

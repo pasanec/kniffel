@@ -7,7 +7,7 @@ public class Tisch {
 	private ArrayList<Wuerfel> wuerfel;
 
 	public ArrayList<Wuerfel> getWuerfel() {
-		return wuerfel;
+		return this.wuerfel;
 	}
 
 	private void setWuerfel(ArrayList<Wuerfel> wuerfel) {

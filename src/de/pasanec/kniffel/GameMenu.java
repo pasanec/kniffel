@@ -13,31 +13,31 @@ public class GameMenu {
 	
 	
 	private String getAnzeigetext1() {
-		return anzeigetext1;
+		return this.anzeigetext1;
 	}
 	private void setAnzeigetext1(String anzeigetext1) {
 		this.anzeigetext1 = anzeigetext1;
 	}
 	private String getAnzeigetext2() {
-		return anzeigetext2;
+		return this.anzeigetext2;
 	}
 	private void setAnzeigetext2(String anzeigetext2) {
 		this.anzeigetext2 = anzeigetext2;
 	}
 	private String getAnzeigetext3() {
-		return anzeigetext3;
+		return this.anzeigetext3;
 	}
 	private void setAnzeigetext3(String anzeigetext3) {
 		this.anzeigetext3 = anzeigetext3;
 	}
 	private String getAbfrage() {
-		return abfrage;
+		return this.abfrage;
 	}
 	private void setAbfrage(String abfrage) {
 		this.abfrage = abfrage;
 	}	
 	private String[] getAusgabe() {
-		return ausgabe;
+		return this.ausgabe;
 	}
 	private void setAusgabe(String[] ausgabe) {
 		this.ausgabe = ausgabe;

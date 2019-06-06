@@ -4,7 +4,7 @@ public class Wuerfel {
 	private int zahl;
 
 	public int getZahl() {
-		return zahl;
+		return this.zahl;
 	}
 
 	private void setZahl(int zahl) {

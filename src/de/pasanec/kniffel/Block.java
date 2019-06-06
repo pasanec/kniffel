@@ -8,7 +8,7 @@ public class Block {
 	private int[] figuren;
 	
 	public int[] getAugen() {
-		return augen;
+		return this.augen;
 	}
 	private int setAugen(int w , int a) {
 		if(w == -1) {
@@ -30,7 +30,7 @@ public class Block {
 		}
 	}
 	public int[] getFiguren() {
-		return figuren;
+		return this.figuren;
 	}
 	private int setFiguren(int w , int a) {
 		if(w == -1) {
@@ -78,18 +78,18 @@ public class Block {
 	}
 	
 	private int bonus() {
-		if(this.summiereArray(augen) >= 63) {
+		if(this.summiereArray(this.augen) >= 63) {
 			return 35;
 		}
 		return 0;
 	}
 	
 	private int obererTeil() {
-		return this.summiereArray(augen) + this.bonus();
+		return this.summiereArray(this.augen) + this.bonus();
 	}
 	
 	private int untererTeil() {
-		return this.summiereArray(figuren);
+		return this.summiereArray(this.figuren);
 	}
 	
 // ***Prüfen und berechnen einzutragender Werte	***
@@ -159,7 +159,7 @@ public class Block {
 			break;
 		
 		case 13: // Chance: Alle augen zählen			
-			return addiere(aw);
+			return this.addiere(aw);
 			
 		}
 		

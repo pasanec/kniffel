@@ -7,13 +7,13 @@ public class Person {
 	private Block block;
 	
 	public String getName() {
-		return name;
+		return this.name;
 	}
 	private void setName(String name) {
 		this.name = name;
 	}
 	public Block getBlock() {
-		return block;
+		return this.block;
 	}
 	private void setBlock(Block block) {
 		this.block = block;
