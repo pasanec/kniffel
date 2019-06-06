@@ -72,6 +72,7 @@ public class StartGame {
 			for(int j = 0; j < this.getPersonen().size(); j++) {
 				System.out.println("Spieler " + (j+1) + "von " + this.getPersonen().size() + " - " + "Runde " + (i+1)  + " von 13");
 				System.out.println("### " + this.getPersonen().get(j).getName() + "###");
+				System.out.println(this.personen.get(j).ausgabe());
 				this.getWb().setWuerfel(5);
 				for(int k = 0; k < 2; k++) {
 					 System.out.println(this.getWb().zeige());
@@ -91,6 +92,7 @@ public class StartGame {
 				this.getErgebnisse().put(this.getPersonen().get(j).getName(), this.getPersonen().get(j).punkte());				
 			}
 		}
+		System.out.println(this.getErgebnisse().get(this.getErgebnisse().size() - 1) + " hat gewonnen\r\n\r\n");
 		return this.getErgebnisse();
 	}
 	
