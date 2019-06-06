@@ -8,40 +8,41 @@ public class GameMenu {
 	private String anzeigetext3;
 	private String abfrage;
 	private String[] ausgabe;
-	private int[] numAusgabe;
 	private Scanner sc;
+	private final int[] ALLEW = {1,2,3,4,5}; // für m3()
 	
 	
-	public String getAnzeigetext1() {
+	private String getAnzeigetext1() {
 		return anzeigetext1;
 	}
 	private void setAnzeigetext1(String anzeigetext1) {
 		this.anzeigetext1 = anzeigetext1;
 	}
-	public String getAnzeigetext2() {
+	private String getAnzeigetext2() {
 		return anzeigetext2;
 	}
 	private void setAnzeigetext2(String anzeigetext2) {
 		this.anzeigetext2 = anzeigetext2;
 	}
-	public String getAnzeigetext3() {
+	private String getAnzeigetext3() {
 		return anzeigetext3;
 	}
-	public void setAnzeigetext3(String anzeigetext3) {
+	private void setAnzeigetext3(String anzeigetext3) {
 		this.anzeigetext3 = anzeigetext3;
 	}
-	public String getAbfrage() {
+	private String getAbfrage() {
 		return abfrage;
 	}
 	private void setAbfrage(String abfrage) {
 		this.abfrage = abfrage;
 	}	
-	public String[] getAusgabe() {
+	private String[] getAusgabe() {
 		return ausgabe;
 	}
-	public void setAusgabe(String[] ausgabe) {
+	private void setAusgabe(String[] ausgabe) {
 		this.ausgabe = ausgabe;
-	}
+	}	
+
 	public GameMenu() {
 		this.setAbfrage("-1");
 		this.setAnzeigetext1("Wie viele Personen möchten mitspielen? Eingabe: ");
@@ -49,7 +50,18 @@ public class GameMenu {
 		this.setAnzeigetext3("0: Abbrechen\r\nWelches Feld moechten Sie eintragen?\r\n1: nur 1ser 2: nur 2er 3: nur 3er 4: nur 4er 5: nur 5er 6: nur 6er\r\n7: Dreierpasch 8: Viererpasch 9: Full-House (25P) 10: Kleine Strasse (30P) 11: Grosse Strasse (40P)\r\n12: 5X gleiche Augenzahl (50P) 13: Chance (Alle Augen zaehlen)\r\nBitte waehlen: ");
 		
 	}
+
+	public int m0() {
+		this.sc = new Scanner(System.in);
+		System.out.println("Moechten Sie gegen Robocop spielen? (J/n): ");
+		this.setAbfrage(sc.nextLine());
+		if(this.getAbfrage().toLowerCase() == "n") {
+			return 0;
+		}
+		return 1;		
+	}
 	
+	// Anzahl Personen
 	public String[] m1() {
 		this.sc = new Scanner(System.in);
 		this.setAbfrage("-1");
@@ -62,20 +74,44 @@ public class GameMenu {
 			}else if(Integer.parseInt(this.getAbfrage()) == 0) {
 				this.sc = null;
 				this.setAusgabe(new String[1]);
+				// Aufrufende Funktion muss [1] auf -1 prüfen
 				this.getAusgabe()[1] = this.getAbfrage();
 				return this.getAusgabe();
 			}
 		}
+		// Namen eingeben
 		this.setAusgabe(new String[Integer.parseInt(this.getAbfrage())]);
 		for(int i = 0; i < Integer.parseInt(this.getAbfrage()) - 1; i++) {
-			System.out.println("Spieler " + (i+1) + ": " + this.anzeigetext2);
+			System.out.println("Spieler " + (i+1) + ": " + this.getAnzeigetext2());
 			this.getAusgabe()[i] = sc.nextLine();
 		}
 		this.sc = null;
 		return this.getAusgabe();
 	}
 	
-	public int m2() {
+	
+	// Zu behaltende Würfel
+	public int[] m2() {		
+		this.setAbfrage("-1");
+		this.sc = new Scanner(System.in);
+		while(this.getAbfrage() == "-1") {
+			System.out.println("Welche Wuerfel moechten Sie behalten? ([ENTER] = alle behalten)\r\nGeben Sie die Nummern durch Kommata getrennt an: ");
+			this.abfrage = this.sc.nextLine();
+			if(this.getAbfrage().length() == 0) {
+				return ALLEW;
+			}
+			this.ausgabe = macheStringArray(abfrage);
+			if(this.getAusgabe().length > 5 || testeAufDuplikateInArray(this.getAusgabe()) == 1) {
+				System.out.println("Bitte geben Sie maximal 5 individuelle Zahlen an.");
+				this.setAbfrage("-1");
+				continue;				
+			}			
+		}
+		return strArraytointArray(ausgabe);
+	}
+	
+	// Feld im Block auswählen
+	public int m3() {
 		this.sc = new Scanner(System.in);
 		this.setAbfrage("-1");
 		System.out.println(this.getAnzeigetext3());
@@ -87,30 +123,17 @@ public class GameMenu {
 				this.setAbfrage("-1");
 			}else if(Integer.parseInt(this.getAbfrage()) == 0) {
 				this.sc = null;
+				// Aufrufende Funktion muss auf 0 prüfen
 				return 0;
 			}
 		}
 		this.sc = null;
 		return Integer.parseInt(this.getAbfrage());		
 	}
+
 	
-	public int[] m3() {
-		
-		this.setAbfrage("-1");
-		this.sc = new Scanner(System.in);
-		while(this.getAbfrage() == "-1") {
-			System.out.println("Welche Wuerfel moechten Sie behalten?\r\nGeben Sie die Nummern durch Kommata getrennt an: ");
-			this.ausgabe = macheStringArray(this.sc.nextLine());
-			if(this.ausgabe.length > 6) {
-				System.out.println("Bitte geben Sie maximal 6 Zahlen an.");
-				this.setAbfrage("-1");
-				continue;				
-			}
-			
-			
-		}
-	}
 	
+	// Hilfsfunktionen
 	private String[] macheStringArray(String str) {
 		for(int i = 0; i > str.length(); i++) {
 				if(str.charAt(i) == ' ') {
@@ -119,6 +142,28 @@ public class GameMenu {
 		}
 		return str.split(",");
 	}
-
+	
+	private int testeAufDuplikateInArray(String[] ausgabe) {
+		int duplikat = 0;
+		for(int i = 0; i < ausgabe.length; i++) {
+			for (int j = 0; j < ausgabe.length; j++) {
+				if(ausgabe[i] == ausgabe[j]) {
+					duplikat++;
+				}
+			}
+			if(duplikat > 1) {
+				return 1;
+			}
+		}
+		return 0;
+	}
+	
+	private int[] strArraytointArray(String[] ausgabe) {
+		int[] intarr = new int[ausgabe.length];
+		for(int i = 0; i < intarr.length; i++) {
+			intarr[i] = Integer.parseInt(ausgabe[i]);
+		}
+		return intarr;
+	}
 	
 }
