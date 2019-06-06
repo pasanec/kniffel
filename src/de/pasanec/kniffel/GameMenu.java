@@ -77,7 +77,7 @@ public class GameMenu {
 		this.setAusgabe(new String[Integer.parseInt(this.getAbfrage())]);
 		for(int i = 0; i < Integer.parseInt(this.getAbfrage()) - 1; i++) {
 			System.out.println("Spieler " + (i+1) + ": " + this.getAnzeigetext2());
-			this.getAusgabe()[i] = sc.nextLine();
+			this.getAusgabe()[i] = sc.nextLine() + "(Spieler" + (i+1) + ")";
 		}
 		this.sc = null;
 		return this.getAusgabe();

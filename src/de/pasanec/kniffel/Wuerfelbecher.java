@@ -9,8 +9,9 @@ public class Wuerfelbecher {
 	public ArrayList<Wuerfel> getWuerfel() {
 		return this.wuerfel;
 	}
-
-	private void setWuerfel(int anzahl) {
+	
+	// benutzen
+	public void setWuerfel(int anzahl) {
 		for(int i = 0 ; i < anzahl ; i++) {
 			this.wuerfel.add(new Wuerfel());
 		}
@@ -30,6 +31,20 @@ public class Wuerfelbecher {
 		}
 		out += "\r\n";
 		return out;
+	}
+	
+	public String zeige() {
+		String out = "";
+		out += "Werte: ";
+		for(Wuerfel w : this.getWuerfel()) {
+			out += w.getZahl() + " ";
+		}
+		out += "\r\nWuerfel: ";
+		for(int i = 0; i < this.getWuerfel().size(); i++) {
+			out += (i+1) + " ";
+		}
+		out += "\r\n";
+		return out;		
 	}
 
 }

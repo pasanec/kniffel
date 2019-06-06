@@ -1,6 +1,7 @@
 package de.pasanec.kniffel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Tisch {
 	
@@ -28,6 +29,19 @@ public class Tisch {
 		}
 		out += "\r\n";
 		return out;
+	}
+	
+	public void hinzufuegen(ArrayList<Wuerfel> w) {
+		for(Wuerfel wuerfel: w) {
+			this.getWuerfel().add(wuerfel);
+		}
+	}
+	
+	public void loeschen(int[] nummern) {
+		Arrays.sort(nummern);
+		for(int i = nummern.length; i > 0; i-- ) {
+			this.getWuerfel().remove(i - 1);
+		}
 	}
 
 }
