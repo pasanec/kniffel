@@ -14,8 +14,8 @@ public class Tisch {
 		this.wuerfel = wuerfel;
 	}
 
-	public Tisch(ArrayList<Wuerfel> wuerfel) {	
-		this.setWuerfel(wuerfel);
+	public Tisch() {	
+		this.setWuerfel(new ArrayList<Wuerfel>());
 	}
 	
 	@Override

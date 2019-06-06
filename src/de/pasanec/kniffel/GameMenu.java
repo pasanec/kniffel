@@ -50,7 +50,7 @@ public class GameMenu {
 		this.setAnzeigetext3("0: Abbrechen\r\nWelches Feld moechten Sie eintragen?\r\n1: nur 1ser 2: nur 2er 3: nur 3er 4: nur 4er 5: nur 5er 6: nur 6er\r\n7: Dreierpasch 8: Viererpasch 9: Full-House (25P) 10: Kleine Strasse (30P) 11: Grosse Strasse (40P)\r\n12: 5X gleiche Augenzahl (50P) 13: Chance (Alle Augen zaehlen)\r\nBitte waehlen: ");
 		
 	}
-
+	// Robocop
 	public int m0() {
 		this.sc = new Scanner(System.in);
 		System.out.println("Moechten Sie gegen Robocop spielen? (J/n): ");
@@ -68,15 +68,9 @@ public class GameMenu {
 		while(this.getAbfrage() == "-1") {
 			System.out.println(this.getAnzeigetext1());
 			this.setAbfrage(sc.nextLine());
-			if(Integer.parseInt(this.getAbfrage()) < 0 || Integer.parseInt(this.getAbfrage()) > 6) {
-				System.out.println("Bitte geben Sie eine Ganzzahl zwischen 0 und 6 ein.");
+			if(Integer.parseInt(this.getAbfrage()) < 1 || Integer.parseInt(this.getAbfrage()) > 6) {
+				System.out.println("Bitte geben Sie eine Ganzzahl zwischen 1 und 6 ein.");
 				this.setAbfrage("-1");
-			}else if(Integer.parseInt(this.getAbfrage()) == 0) {
-				this.sc = null;
-				this.setAusgabe(new String[1]);
-				// Aufrufende Funktion muss [1] auf -1 prüfen
-				this.getAusgabe()[1] = this.getAbfrage();
-				return this.getAusgabe();
 			}
 		}
 		// Namen eingeben
@@ -105,7 +99,14 @@ public class GameMenu {
 				System.out.println("Bitte geben Sie maximal 5 individuelle Zahlen an.");
 				this.setAbfrage("-1");
 				continue;				
-			}			
+			}
+			for(int wert: strArraytointArray(this.getAusgabe())) {
+				if(wert < 1 || wert > 5) {
+					System.out.println("Geben Sie bitte nur Werte zwischen 1 und 5 an!");
+					this.setAbfrage("-1");
+					break;
+				}
+			}
 		}
 		return strArraytointArray(ausgabe);
 	}

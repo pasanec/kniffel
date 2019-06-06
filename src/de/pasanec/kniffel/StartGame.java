@@ -10,14 +10,14 @@ public class StartGame {
 	private Tisch ti;
 	private GameMenu m;
 	
-	public ArrayList<Person> getPersonen() {
+	private ArrayList<Person> getPersonen() {
 		return this.personen;
 	}
 	private void setPersonen(ArrayList<Person> personen) {
 		this.personen = personen;
 	}
-	private HashMap<String, Integer> getErgebnisse() {
-		return ergebnisse;
+	public HashMap<String, Integer> getErgebnisse() {
+		return this.ergebnisse;
 	}
 	private void setErgebnisse(HashMap<String, Integer> ergebnisse) {
 		this.ergebnisse = ergebnisse;
@@ -40,6 +40,28 @@ public class StartGame {
 	private void setM(GameMenu m) {
 		this.m = m;
 	}
+	
+	public StartGame() {
+		this.setM(new GameMenu());
+		if(this.getM().m0() == 1) {
+			System.out.println("Robocop hat keine Zeit, er muss die Welt retten!");
+		}
+		this.setPersonen(new ArrayList<Person>());
+		for(String name: this.getM().m1()) {
+			this.getPersonen().add(new Person(name));
+		}
+		this.setErgebnisse(new HashMap<String, Integer>());
+		for(Person person: this.getPersonen()) {
+			this.getErgebnisse().put(person.getName(), 0);
+		}
+		this.setWb(new Wuerfelbecher());
+		this.setTi(new Tisch());		
+	}
+	
+	public HashMap<String, Integer> start(){
+		return ergebnisse;
+	}
+	
 	
 	
 	
