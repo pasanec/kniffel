@@ -92,7 +92,7 @@ public class StartGame {
 				this.getErgebnisse().put(this.getPersonen().get(j).getName(), this.getPersonen().get(j).punkte());				
 			}
 		}
-		System.out.println(this.getErgebnisse().get(this.getErgebnisse().size() - 1) + " hat gewonnen\r\n\r\n");
+		//System.out.println(this.getErgebnisse().get(this.getErgebnisse().size() - 1) + " hat gewonnen\r\n\r\n");
 		return this.getErgebnisse();
 	}
 	

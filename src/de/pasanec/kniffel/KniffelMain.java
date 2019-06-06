@@ -1,19 +1,20 @@
 package de.pasanec.kniffel;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class KniffelMain {
 	
 	public static void main(String[] args) {
 		System.out.println("Let's play Kniffel!");
-		ArrayList<Integer> mynums = new ArrayList<Integer>();
-		for(int i = 0; i < 5; i++) {
-			mynums.add(5);
-		}
-		for(int n: mynums) {
-			System.out.print(n);
-		}
-		System.out.println();
+		StartGame game = new StartGame();
+		HashMap<String, Integer> liste = game.start();
+		System.out.println("********Bestenliste*********");
+//		int counter = 1;
+//		for(i = liste.size() - 1; i >= 0; i--) {
+//			System.out.println(counter + liste.);
+//			
+//		}
+		
 		
 		
 		

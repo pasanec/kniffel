@@ -75,7 +75,7 @@ public class GameMenu {
 		}
 		// Namen eingeben
 		this.setAusgabe(new String[Integer.parseInt(this.getAbfrage())]);
-		for(int i = 0; i < Integer.parseInt(this.getAbfrage()) - 1; i++) {
+		for(int i = 0; i < Integer.parseInt(this.getAbfrage()); i++) {
 			System.out.println("Spieler " + (i+1) + ": " + this.getAnzeigetext2());
 			this.getAusgabe()[i] = sc.nextLine() + "(Spieler" + (i+1) + ")";
 		}
@@ -95,7 +95,7 @@ public class GameMenu {
 				return ALLEW;
 			}
 			this.ausgabe = macheStringArray(abfrage);
-			if(this.getAusgabe().length > 5 || testeAufDuplikateInArray(this.getAusgabe()) == 1) {
+			if(this.getAusgabe().length > 5 /*|| testeAufDuplikateInArray(this.getAusgabe()) == 1*/) {
 				System.out.println("Bitte geben Sie maximal 5 individuelle Zahlen an.");
 				this.setAbfrage("-1");
 				continue;				

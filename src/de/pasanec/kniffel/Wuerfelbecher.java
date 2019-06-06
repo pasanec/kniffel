@@ -12,6 +12,7 @@ public class Wuerfelbecher {
 	
 	// benutzen
 	public void setWuerfel(int anzahl) {
+		this.wuerfel = new ArrayList<Wuerfel>();
 		for(int i = 0 ; i < anzahl ; i++) {
 			this.wuerfel.add(new Wuerfel());
 		}
