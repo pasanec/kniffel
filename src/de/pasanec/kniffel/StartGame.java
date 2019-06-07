@@ -70,13 +70,13 @@ public class StartGame {
 			System.out.println("Runde " + (i+1)  + " von 13");
 			System.out.println("---------------------------");
 			for(int j = 0; j < this.getPersonen().size(); j++) {
-				System.out.println("Spieler " + (j+1) + "von " + this.getPersonen().size() + " - " + "Runde " + (i+1)  + " von 13");
+				System.out.println("Spieler " + (j+1) + " von " + this.getPersonen().size() + " - " + "Runde " + (i+1)  + " von 13");
 				System.out.println("### " + this.getPersonen().get(j).getName() + "###");
 				System.out.println(this.personen.get(j).ausgabe());
 				this.getWb().setWuerfel(5);
-				for(int k = 0; k < 2; k++) {
-					 System.out.println(this.getWb().zeige());
+				for(int k = 0; k < 2; k++) {					 
 					 this.getTi().hinzufuegen(this.getWb().getWuerfel());
+					 System.out.println(this.getTi().zeige());
 					 this.getTi().loeschen(this.getM().m2());
 					 if(this.getTi().getWuerfel().size() == 5) {
 						 break;
@@ -95,11 +95,6 @@ public class StartGame {
 		//System.out.println(this.getErgebnisse().get(this.getErgebnisse().size() - 1) + " hat gewonnen\r\n\r\n");
 		return this.getErgebnisse();
 	}
-	
-	
-	
-	
-	
-	
+		
 	
 }

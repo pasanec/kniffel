@@ -33,19 +33,19 @@ public class Wuerfelbecher {
 		out += "\r\n";
 		return out;
 	}
-	
-	public String zeige() {
-		String out = "";
-		out += "Werte: ";
-		for(Wuerfel w : this.getWuerfel()) {
-			out += w.getZahl() + " ";
-		}
-		out += "\r\nWuerfel: ";
-		for(int i = 0; i < this.getWuerfel().size(); i++) {
-			out += (i+1) + " ";
-		}
-		out += "\r\n";
-		return out;		
-	}
+//	Nicht mehr benötigt (siehe Tisch)
+//	public String zeige() {
+//		String out = "";
+//		out += "Werte:   ";
+//		for(Wuerfel w : this.getWuerfel()) {
+//			out += w.getZahl() + " ";
+//		}
+//		out += "\r\nWuerfel: ";
+//		for(int i = 0; i < this.getWuerfel().size(); i++) {
+//			out += (i+1) + " ";
+//		}
+//		out += "\r\n";
+//		return out;		
+//	}
 
 }

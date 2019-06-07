@@ -39,9 +39,28 @@ public class Tisch {
 	
 	public void loeschen(int[] nummern) {
 		Arrays.sort(nummern);
-		for(int i = nummern.length; i > 0; i-- ) {
-			this.getWuerfel().remove(i - 1);
+		ArrayList<Wuerfel> temp = new ArrayList<Wuerfel>();
+		for(int n: nummern) {
+			temp.add(this.getWuerfel().get(n - 1));
 		}
+		this.getWuerfel().clear();
+		for(int i = 0; i < temp.size(); i++) {
+			this.getWuerfel().add(temp.get(i));
+		}
+	}
+	
+	public String zeige() {
+		String out = "";
+		out += "Werte:   ";
+		for(Wuerfel w : this.getWuerfel()) {
+			out += w.getZahl() + " ";
+		}
+		out += "\r\nWuerfel: ";
+		for(int i = 0; i < this.getWuerfel().size(); i++) {
+			out += (i+1) + " ";
+		}
+		out += "\r\n";
+		return out;		
 	}
 
 }
