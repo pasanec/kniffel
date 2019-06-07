@@ -68,10 +68,11 @@ public class StartGame {
 		for(int i = 0; i < 13; i++) {
 			System.out.println("---------------------------");
 			System.out.println("Runde " + (i+1)  + " von 13");
-			System.out.println("---------------------------");
+			System.out.println("---------------------------\r\n\r\n");
 			for(int j = 0; j < this.getPersonen().size(); j++) {
+				this.getTi().getWuerfel().clear();
 				System.out.println("Spieler " + (j+1) + " von " + this.getPersonen().size() + " - " + "Runde " + (i+1)  + " von 13");
-				System.out.println("### " + this.getPersonen().get(j).getName() + "###");
+				System.out.println("### " + this.getPersonen().get(j).getName() + "###\r\n\r\n");
 				System.out.println(this.personen.get(j).ausgabe());
 				this.getWb().setWuerfel(5);
 				for(int k = 0; k < 2; k++) {					 
@@ -83,13 +84,23 @@ public class StartGame {
 					 }
 					 this.getWb().setWuerfel(5 - this.getTi().getWuerfel().size());					 
 				}
-				this.setTemp(this.getM().m3());
-				if(this.getTemp() == 0) {
-					System.out.println("Das Spiel wurde abgebrochen.");
-					return this.ergebnisse;
+				if(this.getTi().getWuerfel().size() < 5) {
+					this.getWb().setWuerfel(5 - this.getTi().getWuerfel().size());
+					this.getTi().hinzufuegen(this.getWb().getWuerfel());
 				}
-				this.getPersonen().get(j).eingabe(this.getTi().getWuerfel(), this.getTemp());
-				this.getErgebnisse().put(this.getPersonen().get(j).getName(), this.getPersonen().get(j).punkte());				
+				
+				do {
+					System.out.println(this.getTi().zeigeSortiert());
+					this.setTemp(this.getM().m3());
+					if(this.getTemp() == 0) {
+						System.out.println("Das Spiel wurde abgebrochen.");
+						return this.ergebnisse;
+					}
+				}while(this.getPersonen().get(j).eingabe(this.getTi().getWuerfel(), this.getTemp()) == -1);
+				
+				this.getErgebnisse().put(this.getPersonen().get(j).getName(), this.getPersonen().get(j).punkte());
+				System.out.println(this.personen.get(j).ausgabe());
+				this.getM().m4();
 			}
 		}
 		//System.out.println(this.getErgebnisse().get(this.getErgebnisse().size() - 1) + " hat gewonnen\r\n\r\n");

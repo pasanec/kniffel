@@ -26,6 +26,7 @@ public class Block {
 			}
 			return 0;
 		} else {
+			System.out.println("\r\nFELD BEREITS BELEGT!");
 			return -1;
 		}
 	}
@@ -40,6 +41,7 @@ public class Block {
 			}
 			return 0;
 		}
+		a -= 6;
 		if(this.figuren[a] == 0) {
 			if(w == 0) {
 				this.figuren[a] = -1;
@@ -48,6 +50,7 @@ public class Block {
 			}
 			return 0;
 		} else {
+			System.out.println("\r\nFELD BEREITS BELEGT!");
 			return -1;
 		}
 	}
@@ -139,7 +142,7 @@ public class Block {
 					}					
 				}
 			}
-			return 0;
+			return gesamtWert;
 		
 		case 10: // Kleine Straße: 4 aufeinanderfolgende Zahlen (30 P)
 			sw = 2;
@@ -174,7 +177,7 @@ public class Block {
 			}
 			for(int za: zarray) {
 				if(za >= az) {
-					break;
+					return gesamtWert;
 				}
 			}
 			gesamtWert = 0;
@@ -186,13 +189,15 @@ public class Block {
 				counter++;
 			}
 			counter = 0;
-			Arrays.parallelSort(zarray);
+			Arrays.sort(zarray);
 			for(int i = 0; i < 5; i++) {
 				if(zarray[i]+1 == zarray[i+1]) {
 					counter++;
-					if(counter >= az) {
-						break;
+					if(counter >= az - 1) {
+						return gesamtWert;
 					}
+				}else if(zarray[i] == zarray[i+1]){
+					continue;
 				}else {
 					counter = 0;
 				}
@@ -210,9 +215,9 @@ public class Block {
 	public int eintragen(ArrayList<Wuerfel> aw, int a) {
 		int rueckgabe = 0;
 		if(a < 7 && a > 0) {
-			rueckgabe = this.setAugen(this.berechneWert(aw, a), a);
+			rueckgabe = this.setAugen(this.berechneWert(aw, a), a - 1);
 		}else if(a >= 7 && a <=13) {
-			rueckgabe = this.setFiguren(this.pruefeFigur(aw, a), a);
+			rueckgabe = this.setFiguren(this.pruefeFigur(aw, a), a - 1);
 		}else {
 			return -1;
 		}
@@ -258,7 +263,7 @@ public class Block {
 		liste += "_____________________________\r\n";
 		liste +="ENDSUMME: " + this.rechneZusammen() + "\r\n";
 		liste += "\r\n";
-		liste += "=======================================================================\\r\\n\\r\\n";
+		liste += "=======================================================================\r\n\r\n";
 		
 		return liste;
 	}	

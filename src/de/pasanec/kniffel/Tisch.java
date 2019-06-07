@@ -3,6 +3,8 @@ package de.pasanec.kniffel;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 public class Tisch {
 	
 	private ArrayList<Wuerfel> wuerfel;
@@ -38,6 +40,10 @@ public class Tisch {
 	}
 	
 	public void loeschen(int[] nummern) {
+		if(nummern.length == 0) {
+			this.getWuerfel().clear();
+			return;
+		}
 		Arrays.sort(nummern);
 		ArrayList<Wuerfel> temp = new ArrayList<Wuerfel>();
 		for(int n: nummern) {
@@ -60,6 +66,23 @@ public class Tisch {
 			out += (i+1) + " ";
 		}
 		out += "\r\n";
+		return out;		
+	}
+	
+	public String zeigeSortiert() {
+		int[] temp = new int[this.getWuerfel().size()];
+		String out = "\r\n";
+		out += "Werte:   ";
+		int i = 0;
+		for(Wuerfel w : this.getWuerfel()) {
+			temp[i] = w.getZahl();
+			i++;
+		}
+		Arrays.sort(temp);
+		for(int w : temp) {
+			out += w + " ";
+		}		
+		out += "(sortiert)\r\n";
 		return out;		
 	}
 

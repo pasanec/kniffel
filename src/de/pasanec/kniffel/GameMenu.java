@@ -55,10 +55,13 @@ public class GameMenu {
 		this.sc = new Scanner(System.in);
 		System.out.println("Moechten Sie gegen Robocop spielen? (J/n): ");
 		this.setAbfrage(sc.nextLine());
-		if(this.getAbfrage().toLowerCase() == "n") {
+		if(this.getAbfrage().toLowerCase().trim().equals("n")) {
+			this.sc = null;
 			return 0;
+		}else{
+			this.sc = null;
+			return 1;		
 		}
-		return 1;		
 	}
 	
 	// Anzahl Personen
@@ -77,7 +80,7 @@ public class GameMenu {
 		this.setAusgabe(new String[Integer.parseInt(this.getAbfrage())]);
 		for(int i = 0; i < Integer.parseInt(this.getAbfrage()); i++) {
 			System.out.println("Spieler " + (i+1) + ": " + this.getAnzeigetext2());
-			this.getAusgabe()[i] = sc.nextLine() + "(Spieler" + (i+1) + ")";
+			this.getAusgabe()[i] = sc.nextLine() + " (Spieler " + (i+1) + ") ";
 		}
 		this.sc = null;
 		return this.getAusgabe();
@@ -89,7 +92,7 @@ public class GameMenu {
 		this.setAbfrage("-1");
 		this.sc = new Scanner(System.in);
 		while(this.getAbfrage() == "-1") {
-			System.out.println("Welche Wuerfel moechten Sie behalten? ([ENTER] = alle behalten)\r\nGeben Sie die Nummern durch Kommata getrennt an: ");
+			System.out.println("Welche Wuerfel moechten Sie behalten? ([ENTER] = alle behalten, 6 = keinen behalten)\r\nGeben Sie die Nummern durch Kommata getrennt an: ");
 			this.abfrage = this.sc.nextLine();
 			if(this.getAbfrage().length() == 0) {
 				return ALLEW;
@@ -101,10 +104,13 @@ public class GameMenu {
 				continue;				
 			}
 			for(int wert: strArraytointArray(this.getAusgabe())) {
-				if(wert < 1 || wert > 5) {
-					System.out.println("Geben Sie bitte nur Werte zwischen 1 und 5 an!");
+				if(wert < 1 || wert > 6) {
+					System.out.println("Geben Sie bitte nur Werte zwischen 1 und 6 an!");
 					this.setAbfrage("-1");
 					break;
+				}
+				if(wert == 6) {
+					return new int[0];
 				}
 			}
 		}
@@ -114,10 +120,9 @@ public class GameMenu {
 	// Feld im Block auswählen
 	public int m3() {
 		this.sc = new Scanner(System.in);
-		this.setAbfrage("-1");
-		System.out.println(this.getAnzeigetext3());
+		this.setAbfrage("-1");		
 		while(this.getAbfrage() == "-1") {
-			System.out.println(this.getAnzeigetext1());
+			System.out.println(this.getAnzeigetext3());
 			this.setAbfrage(sc.nextLine());
 			if(Integer.parseInt(this.getAbfrage()) < 0 || Integer.parseInt(this.getAbfrage()) > 13) {
 				System.out.println("Bitte geben Sie eine Ganzzahl zwischen 0 und 13 ein.");
@@ -130,6 +135,15 @@ public class GameMenu {
 		}
 		this.sc = null;
 		return Integer.parseInt(this.getAbfrage());		
+	}
+	
+	// STOP
+	public void m4() {
+		System.out.println("Druecken Sie [ENTER]");
+		this.sc = new Scanner(System.in);
+		this.sc.nextLine();
+		this.sc = null;
+		
 	}
 
 	
@@ -162,7 +176,7 @@ public class GameMenu {
 	private int[] strArraytointArray(String[] ausgabe) {
 		int[] intarr = new int[ausgabe.length];
 		for(int i = 0; i < intarr.length; i++) {
-			intarr[i] = Integer.parseInt(ausgabe[i]);
+			intarr[i] = Integer.parseInt(ausgabe[i].trim());
 		}
 		return intarr;
 	}
